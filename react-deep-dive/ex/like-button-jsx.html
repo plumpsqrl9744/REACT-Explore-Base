@@ -1,0 +1,43 @@
+<html>
+<head>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+<!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+<script type="text/babel">
+  'use strict';
+
+  class LikeButton extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {liked: false};
+    }
+
+    render() {
+      if (this.state.liked) {
+        return 'You liked this.';
+      }
+
+      return (
+        <button onClick={() => this.setState({liked: true})}>
+          Like
+        </button>
+      );
+
+      // return React.createElement('button', {onClick: () => this.setState({liked: true})}, 'Like');
+
+      // 일반적으로 script tag 안에서 직접적인 태그 작성을 하게 되면(ex. "<") 오류를 출력하는데 이것을 수용하기 위해 babel을 사용한다.
+      // babel을 사용하면 31 line의 코드를 25~29 line의 코드로 대체할 수 있다. -> 복잡하고 가독성이 떨어지는 방식을 변경함.
+      // babel을 가장 쉽게 사용하는 방법은 8, 11 line을 참고하면 된다.
+    }
+  }
+</script>
+<script type="text/babel">
+  ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton/>);
+</script>
+</body>
+</html>
